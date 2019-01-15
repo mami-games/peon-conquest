@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlliedAI : ArtificialIntelligence
+public class AlliedAI : MonoBehaviour
 {
     void Start()
     {
