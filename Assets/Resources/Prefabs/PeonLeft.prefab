@@ -249,6 +249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4759305725945601034}
   - component: {fileID: 5780793978947286701}
+  - component: {fileID: 4914766658958739150}
   m_Layer: 0
   m_Name: PeonLeft
   m_TagString: Untagged
@@ -292,3 +293,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4914766658958739150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6237556555458287788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5986235bb43011f40bf303686e3feb8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 4759305725945601034}
+  walkingDirection: 0
+  walkingSpeed: 0
+  isAttacking: 0
+  maxForce: 15
+  maxSpeed: 30
+  maxVelocity: 200
+  mass: 15

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.43703723, g: 0.4847347, b: 0.564996, a: 1}
+  m_IndirectSpecularColor: {r: 0.43703696, g: 0.48473465, b: 0.56499547, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -419,6 +419,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2065910987 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6237556555458287788, guid: 5815b8b5a51d8804da33c1bf46d30541,
+    type: 3}
+  m_PrefabInstance: {fileID: 2123622729}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2065910988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065910987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5986235bb43011f40bf303686e3feb8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 2065910990}
+  walkingDirection: 0
+  walkingSpeed: 0
+  isAttacking: 0
+  target: {fileID: 0}
+  maxForce: 15
+  maxSpeed: 30
+  maxVelocity: 200
+  mass: 15
+--- !u!4 &2065910990 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4759305725945601034, guid: 5815b8b5a51d8804da33c1bf46d30541,
+    type: 3}
+  m_PrefabInstance: {fileID: 2123622729}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2123622729
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -490,5 +523,15 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5780793978947286701, guid: 5815b8b5a51d8804da33c1bf46d30541,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019566414905550849, guid: 5815b8b5a51d8804da33c1bf46d30541,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 863433359}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5815b8b5a51d8804da33c1bf46d30541, type: 3}
