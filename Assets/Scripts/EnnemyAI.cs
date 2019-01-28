@@ -2,45 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AlliedAI : MonoBehaviour
+public class EnnemyAI : MonoBehaviour
 {
     private Animator animator;
     public Transform playerTransform;
-    public bool isWalking;    
+    public bool isWalking;
     public bool isAttacking;
     private GameObject target;
     private GameObject player;
     private float speed;
     public int health;
-    public int attackDamage;
+    public int attackDamage;    
 
-    private GameObject closestEnemy = null;        
+    private GameObject closestEnemy = null;
 
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
-        player = GameObject.Find("PeonLeft");
-        playerTransform = GetComponent<Transform>();        
+        player = GameObject.Find("PeonRight");
+        playerTransform = GetComponent<Transform>();
         target = null;
-        isWalking = false;        
+        isWalking = false;
         isAttacking = false;        
         speed = 2f;
-        health = 6;
-        attackDamage = 1;                
+        health = 3;
+        attackDamage = 1;        
     }
 
     void Update()
     {
-        Debug.Log(closestEnemy);
-        if(closestEnemy == null)
-        {
-            isAttacking = false;
-        }
+
         if (isAttacking != true)
         {
             isWalking = true;
             animator.SetBool("isWalking", isWalking);
-            SeekClosestEnemy();                   
+            SeekClosestEnemy();
         }
         else
         {
@@ -48,26 +44,29 @@ public class AlliedAI : MonoBehaviour
         }
 
         ManageAnimation();
+
     }
 
     void OnCollisionEnter(Collision collision)
-    {
-        
-        if (collision.gameObject.tag == "EnnemyUnit")
+    {                
+        if (collision.gameObject.tag == "AlliedUnit")
         {
             isAttacking = true;
-            isWalking = false;            
+            isWalking = false;
+
         }
-        if (collision.gameObject.tag == "EnnemyWeapon")
+        if (collision.gameObject.tag == "Weapon")
         {
             GameObject ennemy = GameObject.FindGameObjectWithTag(collision.gameObject.tag);
-            health -= ennemy.gameObject.GetComponentInParent<EnnemyAI>().attackDamage;
-
-            if (health <= 0)
+            health -= ennemy.gameObject.GetComponentInParent<AlliedAI>().attackDamage;
+            
+            if(health <= 0)
             {
-                Destroy(gameObject);                
+                Destroy(gameObject);
+                isAttacking = false;
+                isWalking = true;
             }
-
+            
 
         }
 
@@ -75,19 +74,17 @@ public class AlliedAI : MonoBehaviour
 
     private void ManageAnimation()
     {
-
         animator.SetBool("isAttacking", isAttacking);
         animator.SetBool("isWalking", isWalking);
     }
 
     private void SeekClosestEnemy()
     {
-        
+
         closestEnemy = FindClosestEnemy();
 
         if (closestEnemy != null)
-        {
-            Debug.Log(closestEnemy);
+        {            
             transform.position = Vector3.MoveTowards(transform.position, closestEnemy.transform.position, speed * Time.deltaTime);
             isWalking = true;
             isAttacking = false;
@@ -99,7 +96,7 @@ public class AlliedAI : MonoBehaviour
         GameObject closestEnemy = null;
         float closestDistance = Mathf.Infinity;
 
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("EnnemyUnit");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("AlliedUnit");
 
         foreach (GameObject enemy in enemies)
         {
@@ -111,7 +108,7 @@ public class AlliedAI : MonoBehaviour
                 closestDistance = enemyDistance;
             }
         }
-        //Debug.Log(closestEnemy);
+
         return closestEnemy;
     }
 }

@@ -12,9 +12,10 @@ public class WeaponHit : MonoBehaviour
         
     }
 
-    void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.tag == "Peon") {
+    void OnCollisionEnter(Collision collision) {        
+        if (collision.gameObject.tag == "EnnemyUnit") {
             collision.gameObject.GetComponentInChildren<Animator>().SetTrigger("isHit");
+            //Debug.Log("WeaponHit");
         }
     }
 }
