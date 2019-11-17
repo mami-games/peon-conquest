@@ -4,11 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Peon
-  - Weapon
-  - AlliedUnit
-  - EnnemyUnit
-  - EnnemyWeapon
+  - AlliedPeon
+  - EnemyPeon
   layers:
   - Default
   - TransparentFX
