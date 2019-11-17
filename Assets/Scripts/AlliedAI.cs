@@ -11,6 +11,7 @@ public class AlliedAI : MonoBehaviour
     private GameObject target;
     private GameObject player;
     private float speed;
+    public float x;
     public int health;
     public int attackDamage;
 
@@ -45,8 +46,7 @@ public class AlliedAI : MonoBehaviour
         else
         {
             animator.SetBool("isAttacking", isAttacking);
-        }
-
+        }        
         ManageAnimation();
     }
 
@@ -84,14 +84,20 @@ public class AlliedAI : MonoBehaviour
     {
         
         closestEnemy = FindClosestEnemy();
+        
 
         if (closestEnemy != null)
         {
             Debug.Log(closestEnemy);
-            transform.position = Vector3.MoveTowards(transform.position, closestEnemy.transform.position, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, closestEnemy.transform.position, speed * Time.deltaTime);            
             isWalking = true;
-            isAttacking = false;
+            isAttacking = false;                        
         }
+        Vector3 targetPostition = new Vector3(closestEnemy.transform.position.x,
+                                        this.transform.position.y,
+                                        closestEnemy.transform.position.z);
+        this.transform.LookAt(targetPostition);
+
     }
 
     private GameObject FindClosestEnemy()

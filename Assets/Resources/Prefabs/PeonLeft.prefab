@@ -259,6 +259,7 @@ MonoBehaviour:
   playerTransform: {fileID: 4759305725945601034}
   isWalking: 0
   isAttacking: 0
+  x: 0
   health: 0
   attackDamage: 0
 --- !u!54 &1602056098613549012

@@ -7,7 +7,7 @@ public class GameDirector : MonoBehaviour
 {
     public GameObject ennemy;
     private float spawnTime = 2;
-    private float spawnDelay = 2;
+    private float spawnDelay = 4;
 
     void Start()
     {

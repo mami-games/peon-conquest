@@ -6,7 +6,7 @@ public class Peon : MonoBehaviour
 {
     private float movementSpeed = 2f;
 
-    public int hitPoint = 35;
+    public int hitPoint = 10;
     public int armorPoint = 1;
     public int attackDamage = 6;
     public float attackSpeed = 1f;
@@ -15,13 +15,13 @@ public class Peon : MonoBehaviour
     private Peon target = null;
 
     void Update() {
-        if (target == null) {
-            seekClosestEnemy();
-        } else {
-            attack();
-        }
+        //if (target == null) {
+        //    seekClosestEnemy();
+        //} else {
+        //    attack();
+        //}
 
-        if(hitPoint <= 0) {
+        if (hitPoint <= 0) {
             Destroy(gameObject);
         }
     }

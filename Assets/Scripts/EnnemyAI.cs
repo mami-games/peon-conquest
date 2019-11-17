@@ -41,8 +41,7 @@ public class EnnemyAI : MonoBehaviour
         else
         {
             animator.SetBool("isAttacking", isAttacking);
-        }
-
+        }        
         ManageAnimation();
 
     }
@@ -82,13 +81,19 @@ public class EnnemyAI : MonoBehaviour
     {
 
         closestEnemy = FindClosestEnemy();
-
+        
         if (closestEnemy != null)
         {            
             transform.position = Vector3.MoveTowards(transform.position, closestEnemy.transform.position, speed * Time.deltaTime);
             isWalking = true;
             isAttacking = false;
+            
         }
+        Vector3 targetPostition = new Vector3(closestEnemy.transform.position.x,
+                                        this.transform.position.y,
+                                        closestEnemy.transform.position.z);
+        this.transform.LookAt(targetPostition);
+
     }
 
     private GameObject FindClosestEnemy()
