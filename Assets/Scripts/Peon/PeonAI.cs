@@ -8,18 +8,36 @@ public class PeonAI : MonoBehaviour
     public int health = 100;
     public int armor = 35;
     private float actionZoneRadius = 1.5f;
-
-    private void Start() {
-        GetComponentInChildren<WeaponAnimation>().target = currentTarget.GetComponent<PeonAI>();
-    }
+    public string enemyTag;
 
     void Update() {
-        if(currentTarget != null) {
+        if (currentTarget != null) {
             LookAtCurrentTarget();
             MoveTowardsCurrentTarget();
+        } else {
+            currentTarget = FindClosestEnemy();
+            GetComponentInChildren<WeaponAnimation>().target = currentTarget ? currentTarget.GetComponent<PeonAI>() : null;
         }
 
         GetComponentInChildren<Animator>().SetBool("isAttacking", currentTarget != null && CurrentTargetIsReached());
+    }
+
+    private GameObject FindClosestEnemy() {
+        GameObject closestEnemy = null;
+        float closestDistance = Mathf.Infinity;
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+
+        foreach (GameObject enemy in enemies) {
+            float enemyDistance = Vector3.Distance(transform.position, enemy.transform.position);
+
+            if (enemy != gameObject && enemyDistance < closestDistance) {
+                closestEnemy = enemy;
+                closestDistance = enemyDistance;
+            }
+        }
+
+        return closestEnemy;
     }
 
     private void LookAtCurrentTarget() {
