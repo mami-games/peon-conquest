@@ -2,32 +2,18 @@
 using UnityEngine.UI;
 
 public class MoneyScore : MonoBehaviour
-{
-    public GameObject[] enemy;
+{    
     public int money;
-    public Text moneyScore;
+    public Text moneyScoreUI;
 
-    void Start()
-    {
-        moneyScore = this.GetComponent<Text>();
-        money = 0;
-        moneyScore.text = money.ToString();
+    void Start() {
+        moneyScoreUI = this.GetComponent<Text>();
+        money = 50;
+        moneyScoreUI.text = money.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //if(enemy == null)
-        //{
-        //    enemyUnitKilled(enemy.GetComponent<PeonAI>().enemyMoney);
-        //}
-    }
-
-
-    public void enemyUnitKilled(int enemyMoney)
-    {
-        Debug.Log("Je me rend");
-        money += enemyMoney;
-        moneyScore.text = money.ToString();
+    public void enemyUnitKilled(int enemyMoney) {
+        money = int.Parse(moneyScoreUI.text) + enemyMoney;        
+        moneyScoreUI.text = money.ToString();
     }
 }
