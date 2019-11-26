@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 8610540498387833214}
   - component: {fileID: 8610540498387833213}
   - component: {fileID: 8610540498387833210}
+  - component: {fileID: 7942346964491591987}
   m_Layer: 0
   m_Name: AlliedPeon
   m_TagString: AlliedPeon
@@ -332,3 +333,20 @@ MonoBehaviour:
   health: 100
   armor: 5
   enemyTag: EnemyPeon
+--- !u!114 &7942346964491591987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8610540498387833212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cefbe137a09d4f4db395352cc1b18a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  damage:
+    baseValue: 0
+  armor:
+    baseValue: 0

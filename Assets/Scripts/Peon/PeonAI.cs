@@ -9,7 +9,7 @@ public class PeonAI : MonoBehaviour
     public int armor = 35;
     private float actionZoneRadius = 1.5f;
     public string enemyTag;
-    private int enemyWorth = 10;
+    private int enemyMoneyWorth = 10;
 
     void Update() {
         if (currentTarget != null) {
@@ -17,7 +17,12 @@ public class PeonAI : MonoBehaviour
             MoveTowardsCurrentTarget();
         } else {
             currentTarget = FindClosestEnemy();
-            GetComponentInChildren<WeaponAnimation>().target = currentTarget ? currentTarget.GetComponent<PeonAI>() : null;
+
+            if (gameObject.tag == "AlliedPeon") {
+                GetComponentInChildren<WeaponAnimation>().target = currentTarget ? currentTarget.GetComponent<EnemyStats>() : null;
+            } else {
+                GetComponentInChildren<WeaponAnimation>().target = currentTarget ? currentTarget.GetComponent<AlliedStats>() : null;
+            }
         }
 
         GetComponentInChildren<Animator>().SetBool("isAttacking", currentTarget != null && CurrentTargetIsReached());
@@ -48,20 +53,19 @@ public class PeonAI : MonoBehaviour
     public void TakeDamage(int damage) {
         health -= (armor < damage) ? (damage - armor) : 1;
 
-        if(health <= 0) {
-            if (gameObject.tag == "EnemyPeon")
-            {
-                FindObjectOfType<MoneyScore>().enemyUnitKilled(enemyWorth);
+        if (health <= 0) {
+            if (gameObject.tag == "EnemyPeon") {
+                FindObjectOfType<MoneyScore>().OnEnemyUnitKilled(enemyMoneyWorth);
             }
             Destroy(gameObject);
         }
     }
 
     private void MoveTowardsCurrentTarget() {
-        if(!CurrentTargetIsReached()) {
+        if (!CurrentTargetIsReached()) {
             transform.position = Vector3.MoveTowards(
-                transform.position, 
-                currentTarget.transform.position, 
+                transform.position,
+                currentTarget.transform.position,
                 GetDeltaMouvementSpeed()
             );
         }
@@ -77,7 +81,7 @@ public class PeonAI : MonoBehaviour
 
     private float GetDistanceFromCurrentTarget() {
         return Vector3.Distance(
-            transform.position, 
+            transform.position,
             currentTarget.transform.position
         );
     }
