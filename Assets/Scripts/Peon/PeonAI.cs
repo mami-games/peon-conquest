@@ -51,7 +51,7 @@ public class PeonAI : MonoBehaviour
 
         if (health <= 0) {
             if (gameObject.tag == "EnemyPeon") {
-                FindObjectOfType<MoneyScore>().enemyUnitKilled(enemyWorth);
+                FindObjectOfType<MoneyScore>().OnEnemyUnitKilled(enemyMoneyWorth);
             }
             Destroy(gameObject);
         }

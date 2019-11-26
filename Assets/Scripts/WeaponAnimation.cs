@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 
 public class WeaponAnimation : MonoBehaviour
-{
-    public PeonAI target;
-    public int damage = 35;
+{    
+    public CharacterStats target;
+    public int damage = 5;
 
     public void OnAttackAnimationHit() {
-        target.TakeDamage(damage);
+        target.TakeDamage(gameObject.GetComponentInParent<CharacterStats>().damage.GetValue());
     }
 }
