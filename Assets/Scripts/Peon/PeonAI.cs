@@ -9,7 +9,7 @@ public class PeonAI : MonoBehaviour
     public int armor = 35;
     private float actionZoneRadius = 1.5f;
     public string enemyTag;
-    private int enemyWorth = 10;
+    private int enemyMoneyWorth = 10;
 
     void Update() {
         if (currentTarget != null) {
@@ -55,7 +55,7 @@ public class PeonAI : MonoBehaviour
 
         if (health <= 0) {
             if (gameObject.tag == "EnemyPeon") {
-                FindObjectOfType<MoneyScore>().enemyUnitKilled(enemyWorth);
+                FindObjectOfType<MoneyScore>().OnEnemyUnitKilled(enemyMoneyWorth);
             }
             Destroy(gameObject);
         }

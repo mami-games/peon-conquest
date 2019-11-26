@@ -9,7 +9,7 @@ public class EnemyStats : CharacterStats
     }
 
     public override void Die() {
-        FindObjectOfType<MoneyScore>().enemyUnitKilled(enemyWorth.GetValue());
+        FindObjectOfType<MoneyScore>().OnEnemyUnitKilled(enemyWorth.GetValue());
         Destroy(gameObject);
     }
 }

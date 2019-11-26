@@ -2,18 +2,17 @@
 using UnityEngine.UI;
 
 public class MoneyScore : MonoBehaviour
-{    
-    public int money;
+{        
     public Text moneyScoreUI;
 
     void Start() {
         moneyScoreUI = this.GetComponent<Text>();
-        money = 50;
-        moneyScoreUI.text = money.ToString();
+        moneyScoreUI.text = FindObjectOfType<GameDirector>().money.ToString(); 
     }
 
-    public void enemyUnitKilled(int enemyMoney) {
-        money = int.Parse(moneyScoreUI.text) + enemyMoney;        
-        moneyScoreUI.text = money.ToString();
+    public void OnEnemyUnitKilled(int enemyMoney) {
+        int moneyTemp = FindObjectOfType<GameDirector>().money;
+        moneyTemp = int.Parse(moneyScoreUI.text) + enemyMoney;        
+        moneyScoreUI.text = moneyTemp.ToString();
     }
 }
