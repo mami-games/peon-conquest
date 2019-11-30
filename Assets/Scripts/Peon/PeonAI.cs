@@ -9,22 +9,12 @@ public class PeonAI : MonoBehaviour
     public int armor = 35;
     private float actionZoneRadius = 1.5f;
     public string enemyTag;
-    private int enemyMoneyWorth = 10;
+    private int enemyWorth = 10;
 
     void Update() {
-        if (currentTarget != null) {
-            LookAtCurrentTarget();
-            MoveTowardsCurrentTarget();
-        } else {
-            currentTarget = FindClosestEnemy();
-
-            if (gameObject.tag == "AlliedPeon") {
-                GetComponentInChildren<WeaponAnimation>().target = currentTarget ? currentTarget.GetComponent<EnemyStats>() : null;
-            } else {
-                GetComponentInChildren<WeaponAnimation>().target = currentTarget ? currentTarget.GetComponent<AlliedStats>() : null;
-            }
-        }
-
+        currentTarget = FindClosestEnemy();
+        LookAtCurrentTarget();
+        MoveTowardsCurrentTarget();
         GetComponentInChildren<Animator>().SetBool("isAttacking", currentTarget != null && CurrentTargetIsReached());
     }
 
@@ -41,6 +31,12 @@ public class PeonAI : MonoBehaviour
                 closestEnemy = enemy;
                 closestDistance = enemyDistance;
             }
+        }
+
+        if (gameObject.tag == "AlliedPeon") {
+            GetComponentInChildren<WeaponAnimation>().target = currentTarget ? currentTarget.GetComponent<EnemyStats>() : null;
+        } else {
+            GetComponentInChildren<WeaponAnimation>().target = currentTarget ? currentTarget.GetComponent<AlliedStats>() : null;
         }
 
         return closestEnemy;
