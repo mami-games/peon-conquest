@@ -5,20 +5,27 @@ public class PeonAI : MonoBehaviour
 {
     public GameObject currentTarget;
     public float mouvementSpeed = 3f;
-    public int health = 100;
-    public int armor = 35;
+    public CharacterStats unitStat;
     private float actionZoneRadius = 1.5f;
     public string enemyTag;
-    private int enemyWorth = 10;
+    
 
-    void Update() {
+    protected virtual void Start() {
+        unitStat = new CharacterStats();
+    }
+
+    protected virtual void Update() {
+        SeekAndDestroyEnemy();
+    }
+
+    public void SeekAndDestroyEnemy() {
         currentTarget = FindClosestEnemy();
         LookAtCurrentTarget();
         MoveTowardsCurrentTarget();
         GetComponentInChildren<Animator>().SetBool("isAttacking", currentTarget != null && CurrentTargetIsReached());
     }
 
-    private GameObject FindClosestEnemy() {
+    public GameObject FindClosestEnemy() {
         GameObject closestEnemy = null;
         float closestDistance = Mathf.Infinity;
 
@@ -32,13 +39,7 @@ public class PeonAI : MonoBehaviour
                 closestDistance = enemyDistance;
             }
         }
-
-        if (gameObject.tag == "AlliedPeon") {
-            GetComponentInChildren<WeaponAnimation>().target = currentTarget ? currentTarget.GetComponent<EnemyStats>() : null;
-        } else {
-            GetComponentInChildren<WeaponAnimation>().target = currentTarget ? currentTarget.GetComponent<AlliedStats>() : null;
-        }
-
+        
         return closestEnemy;
     }
 
@@ -46,15 +47,15 @@ public class PeonAI : MonoBehaviour
         transform.LookAt(currentTarget.transform);
     }
 
-    public void TakeDamage(int damage) {
-        health -= (armor < damage) ? (damage - armor) : 1;
-
-        if (health <= 0) {
-            if (gameObject.tag == "EnemyPeon") {
-                FindObjectOfType<MoneyScore>().OnEnemyUnitKilled(enemyMoneyWorth);
-            }
-            Destroy(gameObject);
+    public void TakeDamage(int damage) {        
+        unitStat.TakeDamage(damage);
+        if(unitStat.currentHealth <= 0) {
+            Die();
         }
+    }
+
+    public void DealDamageToCurrentTarget() {        
+        currentTarget.GetComponent<PeonAI>().TakeDamage(unitStat.damage);
     }
 
     private void MoveTowardsCurrentTarget() {
@@ -81,4 +82,6 @@ public class PeonAI : MonoBehaviour
             currentTarget.transform.position
         );
     }
+
+    public virtual void Die() { }
 }
