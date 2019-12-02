@@ -416,6 +416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 612814351}
   - component: {fileID: 612814350}
+  - component: {fileID: 612814352}
   m_Layer: 0
   m_Name: GameDirector
   m_TagString: Untagged
@@ -452,6 +453,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &612814352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612814349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157a380d88b1c39488985859bca88376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyScoreUI: {fileID: 1123440051}
+  gameDirector: {fileID: 612814350}
 --- !u!1 &982583079
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,7 +585,6 @@ GameObject:
   - component: {fileID: 1123440049}
   - component: {fileID: 1123440052}
   - component: {fileID: 1123440051}
-  - component: {fileID: 1123440050}
   m_Layer: 5
   m_Name: MoneyText
   m_TagString: Untagged
@@ -597,18 +611,6 @@ RectTransform:
   m_AnchoredPosition: {x: 232, y: 137}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1123440050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123440048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 157a380d88b1c39488985859bca88376, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1123440051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1357,7 +1359,7 @@ PrefabInstance:
         type: 3}
       propertyPath: moneyScore
       value: 
-      objectReference: {fileID: 1123440050}
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9121123041703116155, guid: 71834bd74ec3ef44797b1c015a5c6b48, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 71834bd74ec3ef44797b1c015a5c6b48, type: 3}

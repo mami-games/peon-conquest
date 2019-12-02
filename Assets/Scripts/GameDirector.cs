@@ -23,8 +23,6 @@ public class GameDirector : MonoBehaviour
 
     public void Awake() {
         instance = this;        
-        Debug.Log(PlayerPrefs.HasKey("Money"));
-        Debug.Log(PlayerPrefs.GetInt("Money"));
 
         if (PlayerPrefs.HasKey("Money")) {            
             money = PlayerPrefs.GetInt("Money");
@@ -84,7 +82,6 @@ public class GameDirector : MonoBehaviour
     }
 
     public void Save() {
-        Debug.Log(money);
         PlayerPrefs.SetInt("Money", money);
         PlayerPrefs.SetInt("NumberOfUpgrade", numberOfUpgrade);
     }
