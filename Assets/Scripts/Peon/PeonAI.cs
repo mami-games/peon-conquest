@@ -44,7 +44,9 @@ public class PeonAI : MonoBehaviour
     }
 
     private void LookAtCurrentTarget() {
-        transform.LookAt(currentTarget.transform);
+        if (currentTarget != null) {
+            transform.LookAt(currentTarget.transform);
+        }
     }
 
     public void TakeDamage(int damage) {        
