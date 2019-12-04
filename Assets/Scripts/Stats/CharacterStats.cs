@@ -1,28 +1,18 @@
 ﻿using UnityEngine;
 
-public class CharacterStats : MonoBehaviour
+public class CharacterStats
 {
     public int maxHealth = 100;
-    public int currentHealth { get; private set; }
+    public int currentHealth;
 
-    public Stat damage;
-    public Stat armor;
-    public Stat enemyWorth;
+    public int damage;
+    public int armor;
+    public int moneyWorth;
 
-    public void Awake() {
-        currentHealth = maxHealth;
+    public void TakeDamage(int damage) {        
+        damage -= armor;
+        damage = Mathf.Clamp(damage, 1, int.MaxValue);
+
+        currentHealth -= damage;        
     }
-
-    public void TakeDamage(int damage) {
-        damage -= armor.GetValue();
-        damage = Mathf.Clamp(damage, 0, int.MaxValue);
-
-        currentHealth -= damage;
-
-        if (currentHealth <= 0) {
-            Die();
-        }
-    }
-
-    public virtual void Die() { }
 }

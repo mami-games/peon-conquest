@@ -110,9 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53e1c33993694884db72fb482852ce94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  testTarget: {fileID: 0}
-  damage: 35
 --- !u!1 &8475588199643624889
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,8 +214,7 @@ GameObject:
   - component: {fileID: 8475588199795842780}
   - component: {fileID: 8475588199795842781}
   - component: {fileID: 8475588199795842778}
-  - component: {fileID: 8475588199795842779}
-  - component: {fileID: 9121123041703116155}
+  - component: {fileID: 8295379087388640812}
   m_Layer: 0
   m_Name: EnemyPeon
   m_TagString: EnemyPeon
@@ -317,7 +313,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &8475588199795842779
+--- !u!114 &8295379087388640812
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -326,30 +322,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8475588199795842776}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45877473506d11245b456cd0d19da6b7, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f3b3901ea26ca948bf7d9c1c0b1545d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentTarget: {fileID: 0}
   mouvementSpeed: 3
-  health: 100
-  armor: 20
   enemyTag: AlliedPeon
---- !u!114 &9121123041703116155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8475588199795842776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b64ce88f33737fb458e38fd9c94418ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  damage:
-    baseValue: 0
-  armor:
-    baseValue: 0
-  enemyWorth:
-    baseValue: 0

@@ -416,6 +416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 612814351}
   - component: {fileID: 612814350}
+  - component: {fileID: 612814352}
   m_Layer: 0
   m_Name: GameDirector
   m_TagString: Untagged
@@ -436,6 +437,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeAttackValue: 5
+  money: 50
+  numberOfUpgrade: 0
 --- !u!4 &612814351
 Transform:
   m_ObjectHideFlags: 0
@@ -450,6 +453,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &612814352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612814349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 157a380d88b1c39488985859bca88376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moneyScoreUI: {fileID: 1123440051}
+  gameDirector: {fileID: 612814350}
 --- !u!1 &982583079
 GameObject:
   m_ObjectHideFlags: 0
@@ -462,6 +479,7 @@ GameObject:
   - component: {fileID: 982583083}
   - component: {fileID: 982583082}
   - component: {fileID: 982583081}
+  - component: {fileID: 982583084}
   m_Layer: 0
   m_Name: WallShortRight
   m_TagString: EnemyPeon
@@ -541,6 +559,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 982583079}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &982583084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982583079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f3b3901ea26ca948bf7d9c1c0b1545d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTarget: {fileID: 0}
+  mouvementSpeed: 3
+  enemyTag: 
 --- !u!1 &1123440048
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,9 +585,8 @@ GameObject:
   - component: {fileID: 1123440049}
   - component: {fileID: 1123440052}
   - component: {fileID: 1123440051}
-  - component: {fileID: 1123440050}
   m_Layer: 5
-  m_Name: Text
+  m_Name: MoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -579,20 +611,6 @@ RectTransform:
   m_AnchoredPosition: {x: 232, y: 137}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1123440050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1123440048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 157a380d88b1c39488985859bca88376, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  money: 0
-  moneyScoreUI: {fileID: 0}
 --- !u!114 &1123440051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -645,6 +663,7 @@ GameObject:
   - component: {fileID: 1148250276}
   - component: {fileID: 1148250275}
   - component: {fileID: 1148250274}
+  - component: {fileID: 1148250277}
   m_Layer: 0
   m_Name: WallShortLeft
   m_TagString: AlliedPeon
@@ -724,6 +743,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1148250272}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1148250277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148250272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 694ba82f0110889468e300b527e3d560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTarget: {fileID: 0}
+  mouvementSpeed: 3
+  enemyTag: 
 --- !u!1 &1226323363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1306,6 +1340,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8475588199795842782, guid: 71834bd74ec3ef44797b1c015a5c6b48,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8475588199795842782, guid: 71834bd74ec3ef44797b1c015a5c6b48,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0000005
+      objectReference: {fileID: 0}
     - target: {fileID: 8475588199795842779, guid: 71834bd74ec3ef44797b1c015a5c6b48,
         type: 3}
       propertyPath: armor
@@ -1315,8 +1359,9 @@ PrefabInstance:
         type: 3}
       propertyPath: moneyScore
       value: 
-      objectReference: {fileID: 1123440050}
-    m_RemovedComponents: []
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9121123041703116155, guid: 71834bd74ec3ef44797b1c015a5c6b48, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 71834bd74ec3ef44797b1c015a5c6b48, type: 3}
 --- !u!1001 &8610540497605580364
 PrefabInstance:
@@ -1395,5 +1440,11 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 100
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 4793169755270684960, guid: 5a6088b68f43f1040b62ec06a5f19b8a,
+        type: 3}
+      propertyPath: enemyTag
+      value: EnemyPeon
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7942346964491591987, guid: 5a6088b68f43f1040b62ec06a5f19b8a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5a6088b68f43f1040b62ec06a5f19b8a, type: 3}
