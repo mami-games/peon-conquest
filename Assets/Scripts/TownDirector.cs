@@ -16,7 +16,7 @@ public class TownDirector : MonoBehaviour
     }
 
     public static Entity selectedEntity;
-    public Canvas entityUI;
+    public static Canvas selectedEntityUI;
 
     private void Awake()
     {
@@ -32,7 +32,10 @@ public class TownDirector : MonoBehaviour
     {
         if(HasClickedOutsideSelectableEntity())
         {
-            Unselect();
+            // TODO: Un clique sur un bouton du UI de l'entité est considéré comme un clique à l'extérieur de l'entité, le désélectionnant.
+            // Trouver un moyen d'empêcher ce comportement.
+            // Le Unselect() sera désactivé en attendant.
+            // Unselect();
         }
     }
 
@@ -42,6 +45,10 @@ public class TownDirector : MonoBehaviour
 
         selectedEntity = entity;
 
+        if(entity.ui)
+        {
+            selectedEntityUI = Instantiate(entity.ui);
+        }
     }
 
     public static void Unselect()
@@ -50,6 +57,11 @@ public class TownDirector : MonoBehaviour
         {
             selectedEntity.Unselect();
             selectedEntity = null;
+        }
+
+        if(selectedEntityUI != null)
+        {
+            Destroy(selectedEntityUI.gameObject);
         }
     }
 
