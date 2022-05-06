@@ -11,6 +11,6 @@ public class UIRefresher : MonoBehaviour
     }
 
     public void RefreshUI() {
-        moneyScoreUI.text = gameDirector.money.ToString();
+        moneyScoreUI.text = gameDirector.money.ToString() + "$";
     }
 }

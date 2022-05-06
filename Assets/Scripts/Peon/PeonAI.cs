@@ -8,7 +8,7 @@ public class PeonAI : MonoBehaviour
     public CharacterStats unitStat;
     private float actionZoneRadius = 1.5f;
     public string enemyTag;
-    
+
 
     protected virtual void Start() {
         unitStat = new CharacterStats();
@@ -19,10 +19,12 @@ public class PeonAI : MonoBehaviour
     }
 
     public void SeekAndDestroyEnemy() {
+
         currentTarget = FindClosestEnemy();
         LookAtCurrentTarget();
         MoveTowardsCurrentTarget();
         GetComponentInChildren<Animator>().SetBool("isAttacking", currentTarget != null && CurrentTargetIsReached());
+
     }
 
     public GameObject FindClosestEnemy() {
@@ -39,7 +41,7 @@ public class PeonAI : MonoBehaviour
                 closestDistance = enemyDistance;
             }
         }
-        
+
         return closestEnemy;
     }
 
@@ -49,15 +51,17 @@ public class PeonAI : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage) {        
+    public void TakeDamage(int damage) {
         unitStat.TakeDamage(damage);
-        if(unitStat.currentHealth <= 0) {
+        if (unitStat.currentHealth <= 0) {
             Die();
         }
     }
 
-    public void DealDamageToCurrentTarget() {        
-        currentTarget.GetComponent<PeonAI>().TakeDamage(unitStat.damage);
+    public void DealDamageToCurrentTarget() {
+        if(CurrentTargetIsReached())
+            currentTarget.GetComponent<PeonAI>().TakeDamage(unitStat.damage);
+
     }
 
     private void MoveTowardsCurrentTarget() {
