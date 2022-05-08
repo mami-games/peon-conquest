@@ -6,6 +6,7 @@ public class Entity : MonoBehaviour
 {
     public Material defaultMaterial;
     public Material selectedMaterial;
+    public Canvas ui;
 
     private void OnMouseDown()
     {
